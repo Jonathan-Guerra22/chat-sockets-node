@@ -5,7 +5,7 @@ const { Producto } = require('../models');
 const obtenerProductos = async(req, res = response ) => {
 
     const { limite = 5, desde = 0 } = req.query;
-    const query = { estado: true };
+    const query = { status: true };
 
     const [ total, productos ] = await Promise.all([
         Producto.countDocuments(query),
@@ -81,7 +81,7 @@ const actualizarProducto = async( req, res = response ) => {
 const borrarProducto = async(req, res = response ) => {
 
     const { id } = req.params;
-    const productoBorrado = await Producto.findByIdAndUpdate( id, { estado: false }, {new: true });
+    const productoBorrado = await Producto.findByIdAndUpdate( id, { status: false }, {new: true });
 
     res.json( productoBorrado );
 }

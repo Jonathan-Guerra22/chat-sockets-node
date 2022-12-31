@@ -5,7 +5,7 @@ const { Categoria } = require('../models');
 const obtenerCategorias = async(req, res = response ) => {
 
     const { limite = 5, desde = 0 } = req.query;
-    const query = { estado: true };
+    const query = { status: true };
 
     const [ total, categorias ] = await Promise.all([
         Categoria.countDocuments(query),
@@ -75,7 +75,7 @@ const actualizarCategoria = async( req, res = response ) => {
 const borrarCategoria = async(req, res =response ) => {
 
     const { id } = req.params;
-    const categoriaBorrada = await Categoria.findByIdAndUpdate( id, { estado: false }, {new: true });
+    const categoriaBorrada = await Categoria.findByIdAndUpdate( id, { status: false }, {new: true });
 
     res.json( categoriaBorrada );
 }

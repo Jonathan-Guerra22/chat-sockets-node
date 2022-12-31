@@ -24,7 +24,7 @@ const buscarUsuarios = async( termino = '', res = response ) => {
     const regex = new RegExp( termino, 'i' );
     const usuarios = await Usuario.find({
         $or: [{ nombre: regex }, { correo: regex }],
-        $and: [{ estado: true }]
+        $and: [{ status: true }]
     });
 
     res.json({
@@ -45,7 +45,7 @@ const buscarCategorias = async( termino = '', res = response ) => {
     }
 
     const regex = new RegExp( termino, 'i' );
-    const categorias = await Categoria.find({ nombre: regex, estado: true });
+    const categorias = await Categoria.find({ nombre: regex, status: true });
 
     res.json({
         results: categorias
@@ -66,7 +66,7 @@ const buscarProductos = async( termino = '', res = response ) => {
     }
 
     const regex = new RegExp( termino, 'i' );
-    const productos = await Producto.find({ nombre: regex, estado: true })
+    const productos = await Producto.find({ nombre: regex, status: true })
                             .populate('categoria','nombre')
 
     res.json({

@@ -6,7 +6,7 @@ const CategoriaSchema = Schema({
         required: [true, 'El nombre es obligatorio'],
         unique: true
     },
-    estado: {
+    status: {
         type: Boolean,
         default: true,
         required: true
